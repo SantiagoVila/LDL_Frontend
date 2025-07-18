@@ -28,11 +28,11 @@ const ScrollingTicker = ({ items, renderItem, heightClass = 'h-48' }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        if (items.length <= 1) return; // No animar si hay 0 o 1 item
+        if (items.length <= 1) return;
 
         const intervalId = setInterval(() => {
             setCurrentIndex(prevIndex => (prevIndex + 1) % items.length);
-        }, 4000); // Cambia de item cada 4 segundos
+        }, 4000);
 
         return () => clearInterval(intervalId);
     }, [items]);
@@ -62,7 +62,8 @@ function HomePage() {
     const [error, setError] = useState('');
     const [noticiaSeleccionada, setNoticiaSeleccionada] = useState(null);
 
-    const apiUrl = import.meta.env.VITE_API_URL || 'https://ldl-api.onrender.com';
+    // ✅ ESTA LÍNEA ES LA CLAVE
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
     useEffect(() => {
         const fetchHomePageData = async () => {
