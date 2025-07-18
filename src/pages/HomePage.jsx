@@ -62,7 +62,7 @@ function HomePage() {
     const [error, setError] = useState('');
     const [noticiaSeleccionada, setNoticiaSeleccionada] = useState(null);
 
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://ldl-api.onrender.com';
 
     useEffect(() => {
         const fetchHomePageData = async () => {
