@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
+// ✅ RUTA DE IMPORTACIÓN CORREGIDA
+import { useAuth } from '../../context/AuthContext';
 
 // --- Componente de Tarjeta de Estadística Reutilizable ---
 const StatCard = ({ label, value, icon, link = null }) => {
@@ -53,7 +54,6 @@ function DtDashboard() {
         return <p className="text-center p-8 text-gray-400">Cargando tu dashboard...</p>;
     }
 
-    // Si el DT no tiene equipo, le mostramos el botón para crear uno.
     if (!usuario.equipo_id) {
         return (
             <div className="max-w-4xl mx-auto text-center py-12">
