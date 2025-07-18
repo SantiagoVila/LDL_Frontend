@@ -5,7 +5,10 @@ import io from 'socket.io-client';
 import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
-const socket = io('http://localhost:3000');
+
+// ✅ 1. Definimos la URL base de la API aquí
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const socket = io(apiUrl); // El socket también debe apuntar a la API en producción
 
 export function AuthProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token'));
@@ -16,7 +19,7 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('token');
         setToken(null);
         setUsuario(null);
-        if (socket) socket.disconnect();
+        if (socket.connected) socket.disconnect();
     };
     
     const refreshUserData = async () => {
@@ -25,7 +28,8 @@ export function AuthProvider({ children }) {
 
         try {
             const decodedUser = jwtDecode(tokenGuardado);
-            const response = await axios.get(`http://localhost:3000/api/usuarios/${decodedUser.id}`, {
+            // ✅ 2. Usamos la variable apiUrl
+            const response = await axios.get(`${apiUrl}/api/usuarios/${decodedUser.id}`, {
                 headers: { Authorization: `Bearer ${tokenGuardado}` }
             });
             
@@ -60,7 +64,8 @@ export function AuthProvider({ children }) {
     }, []);
 
     const login = async (email, password) => {
-        const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+        // ✅ 3. Usamos la variable apiUrl
+        const response = await axios.post(`${apiUrl}/api/auth/login`, { email, password });
         const tokenRecibido = response.data.token;
         localStorage.setItem('token', tokenRecibido);
         setToken(tokenRecibido);
