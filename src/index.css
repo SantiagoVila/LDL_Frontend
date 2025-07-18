@@ -1,0 +1,36 @@
+/* Definición de nuestra paleta de colores y fuentes como variables globales */
+:root {
+  --background-dark: #111827; /* Gris oscuro casi negro */
+  --primary-accent: #22d3ee;   /* Cian eléctrico */
+  --secondary-accent: #ec4899; /* Magenta */
+  --text-primary: #f9fafb;     /* Blanco roto */
+  --text-secondary: #9ca3af;   /* Gris claro */
+  --border-color: #374151;     /* Gris medio */
+  
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+}
+
+/* Pequeño truco para que el scrollbar también tenga el tema oscuro */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+}
