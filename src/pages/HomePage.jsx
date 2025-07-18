@@ -62,14 +62,16 @@ function HomePage() {
     const [error, setError] = useState('');
     const [noticiaSeleccionada, setNoticiaSeleccionada] = useState(null);
 
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
     useEffect(() => {
         const fetchHomePageData = async () => {
             try {
                 const [ligasRes, resultadosRes, noticiasRes, fichajesRes] = await Promise.all([
-                    axios.get('http://localhost:3000/api/ligas/publico'),
-                    axios.get('http://localhost:3000/api/partidos/publico/recientes'),
-                    axios.get('http://localhost:3000/api/noticias?limite=5'),
-                    axios.get('http://localhost:3000/api/stats/ultimos-fichajes?limite=10')
+                    axios.get(`${apiUrl}/api/ligas/publico`),
+                    axios.get(`${apiUrl}/api/partidos/publico/recientes`),
+                    axios.get(`${apiUrl}/api/noticias?limite=5`),
+                    axios.get(`${apiUrl}/api/stats/ultimos-fichajes?limite=10`)
                 ]);
                 setLigas(ligasRes.data);
                 setUltimosResultados(resultadosRes.data);
@@ -92,11 +94,10 @@ function HomePage() {
             <NoticiaModal noticia={noticiaSeleccionada} onClose={() => setNoticiaSeleccionada(null)} />
             
             <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                {/* Encabezado con fondo */}
                 <div 
                     className="text-center mb-12 p-16 rounded-xl border border-gray-700 shadow-2xl" 
                     style={{
-                        backgroundImage: `url('https://placehold.co/1200x400/111827/111827/png?text=.')`, // Placeholder sutil
+                        backgroundImage: `url('https://placehold.co/1200x400/111827/111827/png?text=.')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                     }}
