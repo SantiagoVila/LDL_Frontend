@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Importaciones de Contexto y Componentes de Lógica
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider, useAuth } from '../context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Importaciones para las notificaciones (Toast)
