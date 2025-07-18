@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 // ✅ RUTA DE IMPORTACIÓN CORREGIDA
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 // --- Componente de Tarjeta de Estadística Reutilizable ---
 const StatCard = ({ label, value, icon, link = null }) => {
