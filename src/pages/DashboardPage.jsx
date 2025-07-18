@@ -1,5 +1,5 @@
 // src/pages/DashboardPage.jsx
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../Context/AuthContext';
 import AdminDashboard from '../components/dashboards/AdminDashboard';
 import DtDashboard from '../components/dashboards/DtDashboard';
 import JugadorDashboard from '../components/dashboards/JugadorDashboard';
