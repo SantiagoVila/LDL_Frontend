@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// ✅ RUTA DE IMPORTACIÓN CORREGIDA
-import { useAuth } from '../../Context/AuthContext';
+// ✅ RUTA DE IMPORTACIÓN DEFINITIVA Y CORRECTA
+import { useAuth } from '../../../src/Context/AuthContext';
 
 // --- Componente de Tarjeta de Estadística Reutilizable ---
 const StatCard = ({ label, value, icon, link = null }) => {
@@ -36,7 +36,6 @@ function DtDashboard() {
             }
 
             try {
-                // Usamos la URL de la variable de entorno para producción
                 const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
                 const response = await axios.get(`${apiUrl}/api/equipos/dt/dashboard-stats`, {
                     headers: { Authorization: `Bearer ${token}` }
