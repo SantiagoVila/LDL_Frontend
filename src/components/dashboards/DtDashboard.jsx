@@ -36,7 +36,9 @@ function DtDashboard() {
             }
 
             try {
-                const response = await axios.get('http://localhost:3000/api/equipos/dt/dashboard-stats', {
+                // Usamos la URL de la variable de entorno para producción
+                const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+                const response = await axios.get(`${apiUrl}/api/equipos/dt/dashboard-stats`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setStats(response.data);
